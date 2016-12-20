@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/property', 'PropertyController@index');
+
+// Post method to send request to controller
+Route::post('/property/search', 'PropertyController@search');
