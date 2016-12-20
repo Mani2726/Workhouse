@@ -177,12 +177,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-		
-		/*
-		* Collection service Providers...
-		*/
-		Collective\Html\HtmlServiceProvider::class,
-		
+
+        /*
+        * Collection service Providers...
+        */
+        Collective\Html\HtmlServiceProvider::class,
+
 
     ],
 
@@ -231,11 +231,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-		/*
-		* Added for Collection service Providers
-		*/
-		'Form' => Collective\Html\FormFacade::class,
-		'Html' => Collective\Html\HtmlFacade::class,
+        /*
+        * Added for Collection service Providers
+        */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
