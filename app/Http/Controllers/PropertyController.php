@@ -34,8 +34,8 @@ class PropertyController extends Controller
 		if(!empty($request->get('name'))){
 			$propertyQuery->where('name', 'like', $request->get('name').'%');
 		}
-		if(!empty($request->get('price')) && is_numeric($request->get('price'))){
-			$propertyQuery->where('price', $request->get('price'));
+		if(!empty($request->get('start_price')) && is_numeric($request->get('start_price')) && !empty($request->get('end_price')) && is_numeric($request->get('end_price'))){
+			$propertyQuery->whereBetween('price', [ (int)$request->get('start_price'), (int) $request->get('end_price')]);
 		}
 		if(!empty($request->get('bedrooms')) && is_numeric($request->get('bedrooms'))){
 			$propertyQuery->where('bedrooms', $request->get('bedrooms'));

@@ -32,6 +32,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+				<a class="navbar-brand" href="#">
+                    <img src="{{URL::asset('/logo.png')}}" alt="Workhouse" width="150px" height="50px">
+                </a>
             </div>
             <!-- /.navbar-header -->
 
@@ -72,7 +75,7 @@
                         </li>
 					</ul>
 					{{ Form::submit('Search', array('class' => 'btn btn-primary property_search')) }}
-					<a href="#" class="clear_form">Clear</a>
+					{{ Form::button('Clear', array('class' => 'btn btn-primary clear_form')) }}
 					{!! Form::close() !!}
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -127,9 +130,9 @@
 	
 	<script type="text/javascript">
 		$(document).on("click", ".property_search, .clear_form", function () {
-			if($(this).hasClass("clear_form")){
+			if($(this).hasClass("clear_form"))
 				$('.property_form')[0].reset();
-			}
+			/* Getting the search inputs */
 			var name 		= $('input.name').val();
 			var start_price = $('input.start_price').val();
 			var end_price 	= $('input.end_price').val();
@@ -137,7 +140,8 @@
 			var bedrooms 	= $('input.bedrooms').val();
 			var storeys 	= $('input.storeys').val();
 			var garages 	= $('input.garages').val();
-			$('.property_search').val('Searching...').css('background-color','#6FB7F1');
+			if(!$(this).hasClass("clear_form"))
+				$('.property_search').val('Searching...').css('background-color','#6FB7F1');
 			$.ajax({
 				headers: { 'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content') },
 				type: 'POST',
@@ -146,8 +150,10 @@
 				dataType: 'json',
 				encode : true,
 				success: function(result){
+					// Append the result to the table return from ajax
 					$('#propertysearch .tbody').html(result);
-					$('.property_search').val('Search').css('background-color','#337ab7');
+					if(!$(this).hasClass("clear_form"))
+						$('.property_search').val('Search').css('background-color','#337ab7');
 				}
 			});
 			return false;
